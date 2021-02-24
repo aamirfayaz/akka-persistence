@@ -26,7 +26,7 @@ object Playground extends App {
 
   /*
     If you're first starting with the project, just COMPILE the code (no need to run) to see that the libraries have correctly installed.
-    Only run it after you've made the necessary configurations in application.conf.
+    Only run it after you've made the necessary configurations in application_daniel.conf.
 
     If the code compiles, you're good to go. Feel free to delete this code and go wild with your experiments with Akka Persistence!
   */
