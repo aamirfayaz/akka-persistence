@@ -115,6 +115,10 @@ object PersistentActors2 extends App {
     var latestInvoiceId = 0
     var totalAmount = 0
 
+    /**
+      *  the point of recovery is to reconstruct your internal data (inside the actor/actors) in case something goes wrong or the system goes down.
+    */
+
     override def receiveRecover: Receive = {
       case InvoiceRecipient(id, _, _, amount) =>
         latestInvoiceId = id
@@ -123,7 +127,7 @@ object PersistentActors2 extends App {
     }
     override def receiveCommand: Receive = {
 
-      case ShutDown => context.stop(self) // will be picked from mailbox
+      case ShutDown => context.stop(self) // will be picked from mailbox at the end, if sent at last
 
       case InvoiceBulk(invoices) =>
         val invoiceIds = latestInvoiceId to (latestInvoiceId + invoices.size)
@@ -159,8 +163,13 @@ object PersistentActors2 extends App {
     /***
       * The Persistent Actor is always stopped after this method has been invoked.
       * Best Practice: start the actor again after a while, use BackOff Supervisor
-      * event is, failed to persist the event
-      * seqNr of event from journal's point of view
+      * event:Any is, failed to persist the event
+      * seqNr:Long of event:Any from journal's point of view
+      * From api:
+      * Called when persist fails. By default it logs the error.
+      * Subclass may override to customize logging and for example send negative acknowledgment to sender.
+      * The actor is always stopped after this method has been invoked.
+      * Note that the event may or may not have been saved, depending on the type of failure.
       * */
     override def onPersistFailure(cause: Throwable, event: Any, seqNr: Long): Unit = {
       log.error(s"Failed to persist event: $event because of: $cause")
@@ -171,6 +180,10 @@ object PersistentActors2 extends App {
       * Called if the journal fails to persist the event.
       * In this case, actor is Resumed , not stopped :-), coz we know for that the event was not persisted, and so
       * the actor state was not corrupted in the process.
+      * from api:
+      * Called when the journal rejected persist of an event. The event was not stored.
+      * By default this method logs the problem as an error, and the actor continues.
+      * The callback handler that was passed to the persist method will not be invoked.
       * */
     override def onPersistRejected(cause: Throwable, event: Any, seqNr: Long): Unit = {
       log.error(s"Persist reject for event: $event because of: $cause")
@@ -181,8 +194,6 @@ object PersistentActors2 extends App {
 
   val system = ActorSystem("PersistentActor")
   val accountant_shehzal_crop = system.actorOf(Props[Accountant_Shehzal_Corp], "Accountant_Shehzal_Corp")
-
-
 
  //testing single event case, test #1
   for (i <- 1 to 10) {
