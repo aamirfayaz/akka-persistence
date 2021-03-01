@@ -1,4 +1,4 @@
-package part3_stores_serialization
+package from_daniel.part3_stores_serialization
 
 import akka.actor.ActorLogging
 import akka.persistence._

@@ -44,7 +44,7 @@ object MultiplePersisting1 extends App {
           * so because tax-record is persisted before invoice-record, they are same like ! calls,
           * so its guaranteed that tax-record call to taxAuthority will go first then invoice-record.
           * So even if calls to persist is async as we know but for sure ordering of events is guaranteed.
-          * since call to journal also ! aync, called in order so execution of handlers also occur in order
+          * since call to journal also ! async, called in order so execution of handlers also occur in order
           *
           * General-rule: Sequence calls to persist will happen in order
           *

@@ -1,4 +1,4 @@
-package playground
+package from_daniel.playground
 
 import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.PersistentActor

@@ -1,4 +1,4 @@
-package part4_practices
+package from_daniel.part4_practices
 
 import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.PersistentActor

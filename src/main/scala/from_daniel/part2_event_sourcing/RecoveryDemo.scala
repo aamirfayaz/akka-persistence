@@ -1,4 +1,4 @@
-package part2_event_sourcing
+package from_daniel.part2_event_sourcing
 
 import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.{PersistentActor, Recovery, RecoveryCompleted, SnapshotSelectionCriteria}
