@@ -13,7 +13,7 @@ class RecoveryActor extends PersistentActor with ActorLogging {
 
   def online(latestPersistedId: Int): Receive = {
     case Command(contents) =>
-      println(s"latestpers id: $latestPersistedId")
+      //println(s"latestpers id: $latestPersistedId")
       persist(Event(latestPersistedId, contents)) { event =>
         log.info(s"Successfully persisted $event, recovery is ${if (this.recoveryFinished) "" else "Not"} finished")
         context.become(online(latestPersistedId + 1))
