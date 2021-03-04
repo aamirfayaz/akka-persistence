@@ -1,4 +1,4 @@
-package learning
+package learning.eventsourcing
 
 import akka.actor.{Actor, ActorLogging, ActorRef, ActorSystem, Props}
 import akka.persistence.PersistentActor

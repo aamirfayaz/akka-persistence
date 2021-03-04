@@ -1,7 +1,7 @@
-package learning
+package learning.eventsourcing
 
 import akka.actor.{ActorLogging, ActorSystem, Props}
-import akka.persistence.{PersistentActor, Recovery, RecoveryCompleted, SnapshotSelectionCriteria}
+import akka.persistence.{PersistentActor, RecoveryCompleted}
 
 case class Command(contents: String)
 

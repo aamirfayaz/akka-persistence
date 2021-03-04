@@ -1,4 +1,4 @@
-package learning
+package learning.eventsourcing
 
 import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.{PersistentActor, SaveSnapshotFailure, SaveSnapshotSuccess, SnapshotOffer}
@@ -101,7 +101,7 @@ object SnapShots1 extends App {
   val system = ActorSystem("SnapShotDemo1")
   val chat = system.actorOf(Chat.props("aamir", "daniel"))
 
-/*  for(i <- 1 to 100000) {
+/*  for(i <- 1 to 402) {
     chat ! ReceivedMessage(s"akka rocks: $i")
     chat ! SendMessage(s"akka rules: $i")
   }*/

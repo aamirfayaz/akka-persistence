@@ -1,15 +1,4 @@
-package learning
-
-/**
-  * Designed for high throughput use-cases
-  * Relaxed even ordering guarantees
-  * persistAsync: Unlike persist the persistent actor will continue to receive incoming commands
-    between the call to persist and executing it's handler
-  * First persistAsync will get to journal before second persistAsync always because two calls
-
-      streamProcessor ! Command("command1")
-      streamProcessor ! Command("command2")
-  */
+package learning.eventsourcing
 
 import akka.actor.{Actor, ActorLogging, ActorRef, ActorSystem, Props}
 import akka.persistence.PersistentActor

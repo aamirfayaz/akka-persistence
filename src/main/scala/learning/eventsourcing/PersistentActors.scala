@@ -1,6 +1,6 @@
-package learning
+package learning.eventsourcing
 
-import akka.actor.{ActorLogging, ActorSystem, PoisonPill, Props}
+import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.PersistentActor
 
 import java.util.Date
