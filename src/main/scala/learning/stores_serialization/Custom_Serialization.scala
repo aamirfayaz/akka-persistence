@@ -1,9 +1,15 @@
-package from_daniel.part3_stores_serialization
+package learning.stores_serialization
 
 import akka.actor.{ActorLogging, ActorSystem, Props}
 import akka.persistence.PersistentActor
 import akka.serialization.Serializer
 import com.typesafe.config.ConfigFactory
+
+
+/**
+  * Serialization: turning in-memory objects into a recognizable format.
+  * Java-Serialization by default, has memory, speed , performance issues.
+  */
 
 // command
 case class RegisterUser(email: String, name: String)
@@ -72,7 +78,7 @@ object CustomSerialization extends App {
   val system = ActorSystem("CustomSerialization", ConfigFactory.load().getConfig("customSerializerDemo"))
   val userRegistrationActor = system.actorOf(Props[UserRegistrationActor], "userRegistration")
 
-//  for (i <- 1 to 10) {
-//    userRegistrationActor ! RegisterUser(s"user_$i@rtjvm.com", s"User $i")
-//  }
+  for (i <- 1 to 10) {
+    userRegistrationActor ! RegisterUser(s"user_$i@rtjvm.com", s"User $i")
+  }
 }
