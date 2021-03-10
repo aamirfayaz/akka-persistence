@@ -106,11 +106,11 @@ object Detaching_Domain_Data_Model extends App {
 
   import DomainModel._
 
-/*  for (i <- 10 to 15) {
+  for (i <- 10 to 15) {
     val coupon = Coupon(s"MEGA_COUPON_$i", 100)
     val user = User(s"$i", s"user_$i@learningpersistence.com", "John Doe")
     couponManager ! ApplyCoupon(coupon, user)
-  }*/
+  }
 
 
 }

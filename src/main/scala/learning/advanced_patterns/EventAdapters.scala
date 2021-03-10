@@ -177,10 +177,10 @@ object EventAdapters extends App {
   val system = ActorSystem("EventAdapters", config)
   val inventoryManager = system.actorOf(Props[InventoryManager], "InventoryManager")
 
-  /*  val guitars = for (i <- 1 to 10) yield Guitar(s"$i", s"Hakker $i", "Aamir_the_autodidact")
+    val guitars = for (i <- 1 to 10) yield Guitar(s"$i", s"Hakker $i", "Aamir_the_autodidact")
     guitars foreach { guitar =>
       inventoryManager ! AddGuitar(guitar, 5)
-    }*/
+    }
 
   inventoryManager ! "print"
 }
